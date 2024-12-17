@@ -1,7 +1,6 @@
 import axios from "axios";
-
 const instance = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api/v1`,
   withCredentials: true,
 });
 
@@ -10,13 +9,12 @@ instance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {
-        const response = await axios.post(
-          `http://localhost:5000/api/v1/user/refresh-token`,
-          {},
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/refresh-token`,
           {
             withCredentials: true,
           }
@@ -27,6 +25,7 @@ instance.interceptors.response.use(
         }
       } catch (err) {
         console.log("Token refresh failed:", err);
+        return Promise.reject(err);
       }
     }
 
