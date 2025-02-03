@@ -1,25 +1,24 @@
-import {
-  Home,
-  ShoppingCart,
-  SendToBack,
-  Settings,
-  UsersRound,
-} from "lucide-react";
+import { Home, ShoppingCart, StickyNote, Users, Box } from "lucide-react";
 
 export const sidebarItems = [
-  {
-    title: "Home",
-    url: "/",
-    icon: Home,
-  },
-  {
-    title: "Products",
-    url: "/products",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Users",
-    url: "#",
-    icon: UsersRound,
-  },
+	// {
+	// 	title: "Orders",
+	// 	url: "/",
+	// 	icon: ShoppingCart,
+	// },
+	// {
+	// 	title: "My Products",
+	// 	url: "/products",
+	// 	icon: Box,
+	// },
+	{
+		title: "Vendors",
+		url: "/",
+		icon: Users,
+	},
+	{
+		title: "Posts",
+		url: "/posts",
+		icon: StickyNote,
+	},
 ];
